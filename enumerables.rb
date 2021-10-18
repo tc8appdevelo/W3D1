@@ -47,10 +47,6 @@ class Array
     end
 
     def my_flatten
-       
-        # if self.class != Array
-        #     return [self]
-        # end
         result = []
         self.my_each do |ele|
             if ele.class != Array
@@ -63,23 +59,26 @@ class Array
         return result
     end
 
+    def my_zip(*arrays)
+        new_array = [self]
+        arrays.each do |arr|
+            new_array << arr
+        end
+        max = new_array.max_by(&:length).length
+        final_array = Array.new(new_array.length) {Array.new(max)}
+        new_array.each_with_index do |array_1, idx_1|
+            (0...new_array[0].length).each do |idx_2|
+                final_array[idx_1][idx_2] = new_array[idx_2][idx_1]
+            end
+        end
+    final_array
+    end
+
 end
 
-# def flatten(data)
-#     if !data.is_a?(Array) # self
-#         return [data] # self
-#     end
-#     next_arr = []
-    
-#     data.each do |ele|
-#         next_arr += flatten(ele)
-#     end
 
-#     next_arr
-# end
-
-# arr = [1, 2, 3]
-# p arr.my_all? { |num| num > 1 }
-# p arr.my_all? { |num| num < 4 }
-p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
+a = [1, 2, 3]
+b = [4, 5]
+c = [7, 8, 9]
+p a.my_zip(b, c)
 
