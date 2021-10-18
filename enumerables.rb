@@ -92,6 +92,28 @@ class Array
        new_array
     end
 
+    def my_join(separator="")
+        new_string = ""
+        self.each_with_index do |ele, i|
+            if i != (self.length-1)
+                new_string += ele.to_s + separator
+            else
+                new_string += ele.to_s
+            end
+        end
+        new_string
+    end
+
+    def my_reverse
+        new_array = []
+        i = self.length-1
+        while i >= 0
+            new_array << self[i]
+        i -= 1
+        end
+        new_array
+    end
+
 end
 
 
@@ -99,5 +121,6 @@ a = [1, 2, 3, 4, 5]
 b = [4, 5]
 c = [7, 8, 9]
 
-p a.my_rotate
-p a.my_rotate(-3)
+arr = ["a", "b", "c"]
+
+p arr.my_reverse
