@@ -103,10 +103,24 @@ end
 # words).
 
 def substrings(string)
+  substrings = []
+  string.each_char.with_index do |char_1, idx_1|
+    substrings << char_1
+    string.each_char.with_index do |char_2, idx_2|
+      if idx_2 > idx_1
+        substrings << substrings[-1] + char_2
+      end
+    end
+  end
+substrings
 end
+# p substrings("cat")
 
 def subwords(word, dictionary)
+  sub_words = substrings(word).select { |sub| dictionary.include?(sub) }
 end
+
+# p subwords("cat", ["at", "a"])
 
 # ### Doubler
 # Write a `doubler` method that takes an array of integers and returns an
