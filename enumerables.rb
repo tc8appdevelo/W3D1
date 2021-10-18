@@ -74,11 +74,30 @@ class Array
     final_array
     end
 
+    def my_rotate(num=1)
+        new_array = []
+        new_array.replace(self)
+        #new_array 
+        if num > 0
+            num.times do 
+                new_array.push(new_array.shift)
+            end
+            #return new_array
+        else
+            (num.abs).times do
+                new_array.unshift(new_array.pop)
+            end
+            #return new_array
+        end
+       new_array
+    end
+
 end
 
 
-a = [1, 2, 3]
+a = [1, 2, 3, 4, 5]
 b = [4, 5]
 c = [7, 8, 9]
-p a.my_zip(b, c)
 
+p a.my_rotate
+p a.my_rotate(-3)
